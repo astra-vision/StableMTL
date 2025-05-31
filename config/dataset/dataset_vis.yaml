@@ -1,0 +1,53 @@
+dataset:
+
+  vis:
+  - name: kitti
+    disp_name: kitti_val_from_train_sub_100
+    dir: kitti/kitti_sampled_val_800
+    filenames: data_split/kitti/eigen_val_from_train_vis.txt
+    kitti_bm_crop: true
+    valid_mask_crop: eigen
+    output_type:
+    - depth
+
+  - name: diode
+    disp_name: diode_val_all
+    dir: diode/diode_val
+    filenames: data_split/diode/diode_val_vis.txt
+    output_type:
+    - normal
+    - depth
+
+  - name: cityscapes
+    disp_name: cityscapes_val_full
+    dir: cityscapes
+    filenames: data_split/cityscapes/cityscapes_vis_from_val.txt
+    output_type:
+    - semantic
+
+  - name: kitti_flow
+    disp_name: kitti_flow_2015
+    dir: kitti/flow_2015
+    filenames: data_split/kitti_flow/vis.txt
+    kitti_bm_crop: true
+    output_type:
+    - optical_flow
+
+  - name: kitti_flow
+    disp_name: kitti_flow_2015
+    dir: kitti/flow_2015
+    filenames: data_split/kitti_flow/vis.txt
+    kitti_bm_crop: true
+    output_type:
+    - scene_flow
+
+  - name: mid_intrinsic
+    disp_name: mid_intrinsic_vis
+    dir: mid_intrinsics
+    filenames: data_split/mid_intrinsics/test_vis_20.txt
+    resize_to_hw:
+    - 384
+    - 576
+    output_type:
+    - albedo
+    - shading

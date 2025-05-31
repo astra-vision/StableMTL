@@ -1,0 +1,208 @@
+base_config:
+- config/dataset/dataset_val.yaml
+- config/dataset/dataset_test.yaml
+- config/dataset/dataset_vis.yaml
+
+logging:
+  filename: logging.log
+  format: ' %(asctime)s - %(levelname)s -%(filename)s - %(funcName)s >> %(message)s'
+  console_level: 20
+  file_level: 10
+
+
+model:
+  pretrained_path: stable-diffusion-2
+  latent_scale_factor: 0.18215
+  prediction_type: sample
+
+pipeline:
+  name: StableMTLPipeline
+  kwargs:
+    scale_invariant: true
+    shift_invariant: true
+    input_noise: deterministic
+    encode_rgb_model: duplicate
+
+trainer:
+  name: StableMTLTrainer
+  training_noise_scheduler:
+    pretrained_path: stable-diffusion-2
+    prediction_type: sample
+    num_train_timesteps: 1000
+  prob_drop_second_frame: 0.0
+  init_seed: 2024  # use null to train w/o seeding
+  save_period: 500
+  backup_period: 1000
+  validation_period: 1000
+  visualization_period: 2000
+
+lr: 1.0e-04
+max_iter: 25000  # usually converges at around 20k
+max_epoch: 10000  # a large enough number
+
+loss:
+  name: mse_loss
+  kwargs:
+    reduction: mean
+
+
+
+lr_scheduler:
+  name: IterExponential
+  kwargs:
+    total_iter: 25000
+    final_ratio: 0.01
+    warmup_steps: 100
+
+
+
+dataloader:
+  num_workers: 16
+  effective_batch_size: 32
+  max_train_batch_size: 4
+  seed: 2024  # to ensure continuity when resuming from checkpoint
+
+
+depth_normalization:
+  type: scale_shift_depth
+  clip: true
+  norm_min: -1.0
+  norm_max: 1.0
+  min_max_quantile: 0.02
+
+optical_flow_normalization:
+  type: scale_shift_optical_flow
+  clip: true
+  norm_min: -1.0
+  norm_max: 1.0
+  min_max_quantile: 0.00
+
+
+augmentation:
+  flyingthings3d_scene_flow:
+    enabled: true
+    color_jitter:
+      enabled: true
+      brightness: 0.3
+      contrast: 0.3
+      saturation: 0.3
+      hue: 0.159  # 0.5/3.14
+    random_horizontal_flip:
+      enabled: true
+    random_vertical_flip:
+      enabled: true
+    random_crop:
+      enabled: false
+      crop_size: [640, 384]
+      drop_pc: true
+  flyingthings3d_optical_flow:
+    enabled: true
+    color_jitter:
+      enabled: true
+      brightness: 0.3
+      contrast: 0.3
+      saturation: 0.3
+      hue: 0.159  # 0.5/3.14
+    random_horizontal_flip:
+      enabled: true
+    random_vertical_flip:
+      enabled: true
+    random_crop:
+      enabled: false
+      crop_size: [640, 384]
+      drop_pc: true
+    random_scale:
+      enabled: false
+  vkitti_flow:
+    enabled: true
+    color_jitter:
+      enabled: true
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+      hue: 0.127  # 0.4/3.14
+    random_horizontal_flip:
+      enabled: true
+    random_vertical_flip:
+      enabled: false
+    random_crop:
+      enabled: true
+      crop_size: [1024, 256]
+      drop_pc: true
+    random_scale:
+      enabled: false # this create artifacts in the flow
+      scale_range: [1.0, 1.5]
+  vkitti_depth:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+  hypersim_depth:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+  vkitti_normal:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+  hypersim_normal:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+  hypersim_albedo:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+  hypersim_shading:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+  vkitti_semseg:
+    enabled: true
+    color_jitter:
+      enabled: false
+      brightness: 0.3
+      contrast: 0.3
+      saturation: 0.3
+      hue: 0.159  # 0.5/3.14
+    random_horizontal_flip:
+      enabled: true
+  vkitti_scene_flow:
+    enabled: true
+    random_horizontal_flip:
+      enabled: true
+
+
+
+validation:
+  denoising_steps: 1
+  ensemble_size: 1  # simplified setting for on-training validation
+  processing_res: 0
+  match_input_res: false
+  resample_method: bilinear
+  main_depth_val_metric: abs_relative_difference
+  main_depth_val_metric_goal: minimize
+  main_normal_val_metric: mean_angular_error
+  main_normal_val_metric_goal: minimize
+  main_semantic_val_metric: mIoU
+  main_semantic_val_metric_goal: maximize
+  init_seed: 2024
+
+
+eval:
+  alignment: least_square
+  align_max_res: null
+  eval_depth_metrics:
+  - abs_relative_difference
+  - squared_relative_difference
+  - rmse_linear
+  - rmse_log
+  - log10
+  - delta1_acc
+  - delta2_acc
+  - delta3_acc
+  - i_rmse
+  - silog_rmse
+  eval_normal_metrics:
+  - mean_angular_error
+  eval_semantic_metrics:
+  - mIoU

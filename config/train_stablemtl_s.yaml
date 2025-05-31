@@ -1,0 +1,23 @@
+base_config:
+- config/train_base_config.yaml
+- config/dataset/dataset_train.yaml
+- config/dataset/dataset_val.yaml
+
+
+# Training settings
+trainer:
+  output_types:
+    - semantic
+    - normal
+    - depth
+    - optical_flow
+    - scene_flow
+    - shading
+    - albedo
+
+dataloader:
+  max_train_batch_size: 16
+  iterative_sampling: true
+
+
+max_iter: 20000

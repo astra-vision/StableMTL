@@ -1,0 +1,136 @@
+dataset:
+  train:
+    name: mixed
+    prob_ls: [1.0,
+              1.0, 
+              0.9, 0.1, 
+              0.9, 0.1, 
+              1.0, 
+              0.5, 0.5, 
+              0.5, 0.5]  # Adjusted probabilities
+    dataset_list:
+    - name: hypersim_albedo
+      disp_name: hypersim_albedo_train
+      dir: hypersim/train
+      filenames: data_split/hypersim/filename_list_train_no_nandepth.txt
+      resize_to_hw:
+      - 288
+      - 384
+      output_type: albedo
+
+    - name: hypersim_shading
+      disp_name: hypersim_shading_train
+      dir: hypersim/train
+      filenames: data_split/hypersim/filename_list_train_no_nandepth.txt
+      resize_to_hw:
+      - 288
+      - 384
+      output_type: shading
+
+    - name: hypersim_depth
+      disp_name: hypersim_depth_train
+      dir: hypersim/train
+      filenames: data_split/hypersim/filename_list_train_no_nandepth.txt
+      resize_to_hw:
+      - 288
+      - 384
+      output_type: depth
+
+    - name: vkitti_depth
+      disp_name: vkitti_depth_train
+      dir: vkitti_v2
+      filenames: data_split/vkitti/vkitti_depth_train.txt
+      kitti_bm_crop: true
+      valid_mask_crop: null
+      output_type: depth
+      resize_to_hw:
+      - 187
+      - 621
+
+    - name: hypersim_normal
+      disp_name: hypersim_normal_train
+      dir: hypersim/train
+      filenames: data_split/hypersim/filename_list_train_normal.txt
+      resize_to_hw:
+      - 288
+      - 384
+      output_type: normal
+
+    - name: vkitti_normal
+      disp_name: vkitti_normal_train
+      dir: vkitti_v2
+      filenames: data_split/vkitti/vkitti_normal_train.txt
+      kitti_bm_crop: true
+      valid_mask_crop: null
+      output_type: normal
+      resize_to_hw:
+      - 187
+      - 621
+      
+    - name: vkitti_semantic
+      disp_name: vkitti_semantic_train
+      dir: vkitti_v2
+      filenames: data_split/vkitti/vkitti_semantic_train.txt
+      kitti_bm_crop: true
+      valid_mask_crop: null
+      output_type: semantic
+      resize_to_hw:
+      - 187
+      - 621
+
+    - name: vkitti_optical_flow
+      disp_name: vkitti_optical_flow_train
+      dir: vkitti_v2
+      filenames: data_split/vkitti/vkitti_optical_flow_train.txt
+      kitti_bm_crop: true
+      valid_mask_crop: null
+      output_type: optical_flow
+      resize_to_hw:
+      - 187
+      - 621
+
+    - name: flying_things_3D_optical_flow
+      disp_name: flying_things_3D_optical_flow
+      dir: FlyingThings3D_preprocessed
+      filenames: data_split/flying_things_3D/train.txt
+      output_type: optical_flow
+      resize_to_hw:
+      - 268
+      - 480
+
+    - name: vkitti_scene_flow
+      disp_name: vkitti_scene_flow_train
+      dir: vkitti_v2
+      filenames: data_split/vkitti/vkitti_scene_flow_train.txt
+      kitti_bm_crop: true
+      valid_mask_crop: null
+      output_type: scene_flow
+      resize_to_hw:
+      - 187
+      - 621
+
+    - name: flying_things_3D_scene_flow
+      disp_name: flying_things_3D_scene_flow
+      dir: FlyingThings3D_preprocessed
+      filenames: data_split/flying_things_3D/train.txt
+      output_type: scene_flow
+      resize_to_hw:
+      - 268
+      - 480
+
+  test:
+  - name: cityscapes
+    disp_name: cityscapes_val_full
+    dir: cityscapes
+    filenames: data_split/cityscapes/cityscapes_val_full.txt
+    output_type:
+    - semantic
+    
+  - name: kitti_flow
+    disp_name: kitti_flow_2015
+    dir: kitti/flow_2015
+    filenames: data_split/kitti_flow/training.txt
+    kitti_bm_crop: true
+    output_type:
+    - optical_flow
+    - scene_flow

@@ -1,0 +1,21 @@
+# Core dependencies
+torch==2.3.1
+torchvision==0.18.1
+accelerate==0.22.0
+diffusers==0.25.0
+transformers==4.32.1
+xformers==0.0.27
+
+# Data processing and visualization
+matplotlib==3.7.3
+scipy==1.11.3
+pandas==2.1.1
+tabulate==0.9.0
+h5py==3.10.0
+opencv-python==4.8.1.78
+
+# Configuration management
+omegaconf==2.3.0
+
+# Logging and monitoring
+tensorboard==2.14.1
