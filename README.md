@@ -85,8 +85,6 @@ If you find this work or code useful, please cite our [paper](TODO) and [give th
    source env.sh
    ```
 
-Each dataset folder contains the RGB images and corresponding task annotations (depth, normal, semantic segmentation, optical flow, scene flow, albedo, and shading). The specific data files are referenced in the configuration files under `config/dataset/`.
-
 # 2. ⚙️ Environment Variables Setup
 Before proceeding with dataset downloads or model training/evaluation, you need to configure your environment.
 
