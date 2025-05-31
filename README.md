@@ -437,6 +437,7 @@ This code builds upon the following excellent open-source repositories:
 - [**Lotus**](https://github.com/EnVision-Research/Lotus)
 - [**MID Intrinsics**](https://github.com/compphoto/MIDIntrinsics)
 - [**Tune-A-Video**](https://github.com/showlab/Tune-A-Video)
+- [**DenseMTL**](https://github.com/astra-vision/DenseMTL)
 
 
 This work was supported by the French Agence Nationale de la Recherche (ANR) under project SIGHT (ANR-20-CE23-0016). Computations were performed using HPC resources from GENCI-IDRIS (Grants AD011014102R2, AD011014102R1, AD011014389R1, and AD011012808R3). The authors also thank the CLEPS infrastructure at Inria Paris for additional support.
