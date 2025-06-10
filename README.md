@@ -12,7 +12,7 @@
 
 <br/>
 
-[![arXiv](https://img.shields.io/badge/arXiv-Preprint%20TODO-darkred)](https://arxiv.org/abs/YOUR_PAPER_ID_HERE) <!-- TODO: Update with actual arXiv ID --> 
+[![arXiv](https://img.shields.io/badge/arXiv-Preprint%202506.08013-darkred)](https://arxiv.org/abs/2506.08013) <!-- TODO: Update with actual arXiv ID --> 
 <!-- [![Project page](https://img.shields.io/badge/Project%20Page-StableMTL-darkgreen)](https://github.com/astra-vision/StableMTL) -->
 
 <br/>
@@ -27,7 +27,7 @@
 
 ## 📝 Citation
 
-If you find this work or code useful, please cite our [paper](TODO) and [give this repo a star ⭐](https://github.com/astra-vision/StableMTL/stargazers):
+If you find this work or code useful, please cite our [paper](https://arxiv.org/abs/2506.08013) and [give this repo a star ⭐](https://github.com/astra-vision/StableMTL/stargazers):
 
 ```bibtex
 @InProceedings{stablemtl,
