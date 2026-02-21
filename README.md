@@ -2,6 +2,9 @@
   
 # StableMTL: Repurposing Latent Diffusion Models for Multi-Task Learning from Partially Annotated Synthetic Datasets
 
+
+CVPR 2026
+
 [Anh-Quan Cao](https://anhquancao.github.io)<sup>1</sup>&nbsp;&nbsp;&nbsp;
 [Ivan Lopes](https://ivnlps.github.io)<sup>2</sup>&nbsp;&nbsp;&nbsp;
 [Raoul de Charette](https://rdecharette.github.io/)<sup>2</sup>&nbsp;&nbsp;&nbsp;
