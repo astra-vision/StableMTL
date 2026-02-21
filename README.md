@@ -36,8 +36,8 @@ If you find this work or code useful, please cite our [paper](https://arxiv.org/
 @InProceedings{stablemtl,
     title     = {StableMTL: Repurposing Latent Diffusion Models for Multi-Task Learning from Partially Annotated Synthetic Datasets}, 
     author    = {Anh-Quan Cao and Ivan Lopes and Raoul de Charette},
-    year      = {2025},
-    booktitle = {arXiv}
+    year      = {2026},
+    booktitle = {CVRP}
 }
 ```
 
